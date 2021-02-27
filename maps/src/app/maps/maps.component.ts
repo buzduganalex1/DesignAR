@@ -12,7 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class MapsComponent implements OnInit {
   lat = 47.151726;
   lng = 27.587914;
-  url = 'https://www.youtube.com/embed/LFla9u_CY34';
+  openedInfoWindow;
 
   markers: Marker[];
 
@@ -38,4 +38,16 @@ export class MapsComponent implements OnInit {
   openNewWindow(url): void{
     window.open(url, "_blank");
   }
+
+  onMouseOver(infoWindow, $event: MouseEvent) {
+    if(this.openedInfoWindow){
+      this.openedInfoWindow.close();
+    }
+    this.openedInfoWindow = infoWindow;
+    infoWindow.open();
+}
+
+// onMouseOut(infoWindow, $event: MouseEvent) {
+//     infoWindow.close();
+// }
 }

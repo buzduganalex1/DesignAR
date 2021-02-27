@@ -1,3 +1,11 @@
 agm-map {
     height: 800px;
   }
+.thumbnail:hover{
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.addedBy{
+  color: lightgray;
+}

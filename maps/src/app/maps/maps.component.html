@@ -1,8 +1,20 @@
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="14">
-    <agm-marker [latitude]="marker.latitude" [longitude]="marker.longitude" [iconUrl]="icon" *ngFor="let marker of markers; let i=index" (markerClick)=openNewWindow(marker.youtubeURL)>
-      <!-- <agm-info-window>
-        <iframe width="420" height="500" [src]=sanitizer.bypassSecurityTrustResourceUrl(marker.youtubeURL)>
-        </iframe>
-      </agm-info-window> -->
+    <agm-marker [latitude]="marker.latitude" 
+                [longitude]="marker.longitude" 
+                [iconUrl]="icon"                 
+                (markerClick)="onMouseOver(infoWindow, $event)" 
+                *ngFor="let marker of markers; let i=index">
+      <agm-info-window [disableAutoPan]="false" [maxWidth]="400" #infoWindow>
+        <div>
+            <h2>TITLE</h2>
+            <br>
+            {{marker.description}}
+            <br>
+            <br>
+            <img width="100%" src="{{marker.thumbnail}}" (click)="openNewWindow(marker.youtubeURL)" class="thumbnail">
+            <p class="addedBy">Added by @User123 <span class="glyphicon glyphicon-user"></span></p>
+            <!-- <iframe width="500" height="400" src="{{sanitize(marker.youtubeURL)}}"></iframe> -->
+        </div>      
+      </agm-info-window>
     </agm-marker>
 </agm-map>

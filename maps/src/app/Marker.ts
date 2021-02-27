@@ -4,4 +4,5 @@ export interface Marker{
     longitude: Number;
     description: string;
     youtubeURL: string;
+    thumbnail: string;
 }
