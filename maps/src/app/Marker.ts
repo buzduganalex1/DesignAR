@@ -6,4 +6,5 @@ export interface Marker{
     videoURL: string;
     timestamp: string;
     category: Number;
+    thumbnail: string;
 }

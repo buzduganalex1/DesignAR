@@ -28,7 +28,13 @@ export class MapsComponent implements OnInit {
 
   ngOnInit(): void {
     this.markerService.getMarkers()
-    .subscribe(results => this.markers = results);
+    .subscribe(results => {
+      this.markers = results;
+      this.markers.forEach(obj => {
+        obj.videoURL = 'https://www.youtube.com/embed/kS9ZE-Tzyxc';
+        obj.thumbnail = 'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
+      }); 
+    });
   }
 
   sanitize(url: string): SafeResourceUrl{
