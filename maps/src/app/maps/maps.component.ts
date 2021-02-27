@@ -31,10 +31,44 @@ export class MapsComponent implements OnInit {
     .subscribe(results => {
       this.markers = results;
       this.markers.forEach(obj => {
-        obj.videoURL = 'https://www.youtube.com/embed/kS9ZE-Tzyxc';
-        obj.thumbnail = 'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
+        let videoId = this.getYoutubeId(obj.videoUrl);
+        if (!videoId) {
+          obj.videoUrl = "";
+          obj.thumbnail = "";
+        }
+        else{
+          obj.videoUrl = this.getEmbedUrl(videoId);//'https://www.youtube.com/embed/kS9ZE-Tzyxc';
+          
+          //console.log("DA:" + obj.description + " " + obj.videoUrl);
+          obj.thumbnail = this.getThumbnail(videoId); //'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
+          console.log("DA:" + obj.description + " " + obj.thumbnail);
+        }
       }); 
     });
+  }
+
+  getThumbnail(videoId: string): string {
+    return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+  }
+
+  getEmbedUrl(videoId: string): string{
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  //https://www.youtube.com/watch?v=Uwk_V7mfIxM&ab_channel=AlexBuzdugan
+  getYoutubeId(videoUrl: string): string {
+    if (!videoUrl) {
+      return "";
+    }
+    let startIndex = videoUrl.indexOf("=");
+    if (startIndex === -1) {
+      return "";
+    }
+    let endIndex = videoUrl.indexOf("&");
+    if (endIndex === -1) {
+      return "";
+    }
+    return videoUrl.substring(startIndex + 1, endIndex);
   }
 
   sanitize(url: string): SafeResourceUrl{
