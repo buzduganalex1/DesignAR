@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Marker } from '../Marker';
+import { MarkerService } from '../marker.service';
+
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-maps',
@@ -8,16 +12,30 @@ import { Component, OnInit } from '@angular/core';
 export class MapsComponent implements OnInit {
   lat = 47.151726;
   lng = 27.587914;
+  url = 'https://www.youtube.com/embed/LFla9u_CY34';
+
+  markers: Marker[];
+
   icon = {
             url: '/assets/PinClipart.com_rugged-cross-clipart_5616491.png',
             scaledSize: {height: 40, width: 40}
           };
 
-  label = "Iasi Center";
-  
-  constructor() { }
+  constructor(
+    private markerService: MarkerService,
+    public sanitizer:DomSanitizer)
+    {  }
 
   ngOnInit(): void {
+    this.markers = this.markerService.getMarkers();
   }
 
+  sanitize(url: string): SafeResourceUrl{
+    const sanitized = this.sanitizer.bypassSecurityTrustResourceUrl(url);    
+    return sanitized;
+  }
+
+  openNewWindow(url): void{
+    window.open(url, "_blank");
+  }
 }

@@ -4,6 +4,8 @@ import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { MapsComponent } from './maps/maps.component';
+import { MarkerComponent } from './marker/marker.component';
+import { SafePipePipe } from './safe-pipe.pipe';
 
 @NgModule({
   imports: [
@@ -13,7 +15,7 @@ import { MapsComponent } from './maps/maps.component';
     })
   ],
   providers: [],
-  declarations: [ AppComponent, MapsComponent ],
+  declarations: [ AppComponent, MapsComponent, MarkerComponent, SafePipePipe ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
