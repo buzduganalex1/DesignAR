@@ -5,7 +5,7 @@ export interface Marker{
     latitude: Number;
     longitude: Number;
     description: string;
-    videoURL: string;
+    videoUrl: string;
     timestamp: string;
     category: Number;
     thumbnail: string;
