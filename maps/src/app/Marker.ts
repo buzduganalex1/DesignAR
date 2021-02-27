@@ -1,7 +1,9 @@
 export interface Marker{
-    id: string;
+    //id: string;
     latitude: Number;
     longitude: Number;
     description: string;
-    youtubeURL: string;
+    videoURL: string;
+    timestamp: string;
+    category: Number;
 }

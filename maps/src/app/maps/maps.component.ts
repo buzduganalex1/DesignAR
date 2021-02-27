@@ -27,7 +27,8 @@ export class MapsComponent implements OnInit {
     {  }
 
   ngOnInit(): void {
-    this.markers = this.markerService.getMarkers();
+    this.markerService.getMarkers()
+    .subscribe(results => this.markers = results);
   }
 
   sanitize(url: string): SafeResourceUrl{
