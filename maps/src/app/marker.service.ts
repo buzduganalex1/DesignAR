@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Marker } from './marker';
-import { MARKERS } from './mock-markers';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarkerService {
-  constructor() { }
+  markers: Marker[];
+  constructor(private http: HttpClient) { }
 
-  getMarkers(): Marker[]{
-    return MARKERS;
+  getMarkers(): Observable<Marker[]>{
+    return this.http.get<Marker[]>("https://cg-markers.azurewebsites.net/");
   }
 }
