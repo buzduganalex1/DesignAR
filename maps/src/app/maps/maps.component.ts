@@ -3,6 +3,8 @@ import { Marker } from '../Marker';
 import { MarkerService } from '../marker.service';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CATEGORIES } from '../CATEGORIES';
+import { Category } from "../category";
 
 @Component({
   selector: 'app-maps',
@@ -16,11 +18,6 @@ export class MapsComponent implements OnInit {
 
   markers: Marker[];
 
-  icon = {
-            url: '/assets/PinClipart.com_rugged-cross-clipart_5616491.png',
-            scaledSize: {height: 40, width: 40}
-          };
-
   constructor(
     private markerService: MarkerService,
     public sanitizer:DomSanitizer)
@@ -33,6 +30,8 @@ export class MapsComponent implements OnInit {
       this.markers.forEach(obj => {
         obj.videoURL = 'https://www.youtube.com/embed/kS9ZE-Tzyxc';
         obj.thumbnail = 'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
+        obj.category = Math.floor(Math.random() * Math.floor(6));
+        obj.markerIcon = this.getMarkerIcon(obj.category);
       }); 
     });
   }
@@ -52,9 +51,9 @@ export class MapsComponent implements OnInit {
     }
     this.openedInfoWindow = infoWindow;
     infoWindow.open();
-}
+  }
 
-// onMouseOut(infoWindow, $event: MouseEvent) {
-//     infoWindow.close();
-// }
+  getMarkerIcon(category: Number): Category{
+    return CATEGORIES.find(element => element.id == category);
+  }
 }

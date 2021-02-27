@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { MapsComponent } from './maps/maps.component';
 import { MarkerComponent } from './marker/marker.component';
-import { SafePipePipe } from './safe-pipe.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +16,7 @@ import { SafePipePipe } from './safe-pipe.pipe';
     })
   ],
   providers: [],
-  declarations: [ AppComponent, MapsComponent, MarkerComponent, SafePipePipe ],
+  declarations: [ AppComponent, MapsComponent, MarkerComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

@@ -1,12 +1,14 @@
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="14">
     <agm-marker [latitude]="marker.latitude" 
                 [longitude]="marker.longitude" 
-                [iconUrl]="icon"                 
-                (markerClick)="onMouseOver(infoWindow, $event)" 
+                [iconUrl]="marker.markerIcon.icon"                 
+                (markerClick)="onMouseOver(infoWindow, $event)"
+                (mouseOver)="onMouseOver()"
                 *ngFor="let marker of markers; let i=index">
       <agm-info-window [disableAutoPan]="false" [maxWidth]="400" #infoWindow>
         <div>
             <h2>TITLE</h2>
+            <h3><span class="badge">{{marker.markerIcon.description}}</span></h3>
             <br>
             {{marker.description}}
             <br>

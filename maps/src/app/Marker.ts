@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export interface Marker{
     //id: string;
     latitude: Number;
@@ -7,4 +9,5 @@ export interface Marker{
     timestamp: string;
     category: Number;
     thumbnail: string;
+    markerIcon: Category;
 }
