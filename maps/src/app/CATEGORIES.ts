@@ -3,7 +3,10 @@ import { Category } from "./category";
 export const CATEGORIES: Category[] = [
     {
         id: 0,
-        icon: {},
+        icon: {
+            url: '/assets/00.png',
+            scaledSize: {height: 40, width: 40}
+        },
         description: 'Not defined',
         color: '#3a403c'
     },

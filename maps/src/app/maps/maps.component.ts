@@ -28,8 +28,6 @@ export class MapsComponent implements OnInit {
     .subscribe(results => {
       this.markers = results;
       this.markers.forEach(obj => {
-        
-        obj.category = Math.floor(Math.random() * Math.floor(6));
         obj.markerIcon = this.getMarkerIcon(obj.category);
         let videoId = this.getYoutubeId(obj.videoUrl);
         if (!videoId) {
