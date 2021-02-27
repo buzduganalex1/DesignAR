@@ -12,7 +12,7 @@ The municipality can see those videos and use them as inspiration for the real l
 
 The people can film their creations and  post them on a video platform where other people can see them on the map and rate them, so that the best designs for an area can be used by the municipality.
 
-## Extensibility
+## Extensibility 
 
 Placing object in augmented space can have multiple applications like placing furniture in an home, or decorating an yard with pieces of art. Vizualizing how something looks like before actually starting a project is really helpfull and can reduce the costs and increase the engagement of the community.
 
