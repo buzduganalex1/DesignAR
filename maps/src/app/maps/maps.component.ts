@@ -5,6 +5,10 @@ import { MarkerService } from '../marker.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CATEGORIES } from '../CATEGORIES';
 import { Category } from "../category";
+<<<<<<< Updated upstream
+=======
+import { FormGroup, FormControl, Validators} from '@angular/forms';
+>>>>>>> Stashed changes
 
 import { MapsAPILoader } from '@agm/core';
 import { MARKERS } from '../mock-markers';
@@ -31,11 +35,33 @@ export class MapsComponent implements OnInit {
   displayedMarkers: Marker[];
   filteredMarkers: Marker[];
 
+<<<<<<< Updated upstream
   @ViewChild('search')
   public searchElementRef: ElementRef;
   
   private geoCoder;
   private defaultSearch = true;
+=======
+  icon = {
+            url: '/assets/PinClipart.com_rugged-cross-clipart_5616491.png',
+            scaledSize: {height: 40, width: 40}
+          };
+
+  markerCategories: CategoryView[] = CATEGORIES
+    .map(x => new CategoryView(x)); 
+
+  form = new FormGroup({
+    categoryForm: new FormControl()
+  });
+
+  submit(){ //reset filter
+    console.log(this.form.value);
+  }
+
+  filterMarkers(e) {
+    console.log(e.target.value);
+  }
+>>>>>>> Stashed changes
 
   constructor(
     private markerService: MarkerService,

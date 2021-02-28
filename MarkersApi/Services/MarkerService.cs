@@ -34,5 +34,14 @@ namespace MarkersApi.Services
                 .ToListAsync()
                 .Result;
         }
+
+        public Marker UpdateUrl(string designId, string newUrl)
+        {
+            var existingMarker = Builders<Marker>.Filter.Eq("designId", designId);
+            var updatedMarker = Builders<Marker>.Update.Set("videoUrl", newUrl);
+            this.markerCollection.FindOneAndUpdate(existingMarker, updatedMarker);
+
+            return this.markerCollection.Find(x => x.DesignId == designId).ToListAsync().Result.FirstOrDefault();
+        }
     }
 }

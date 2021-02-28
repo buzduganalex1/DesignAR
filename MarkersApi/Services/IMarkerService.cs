@@ -6,5 +6,6 @@ namespace MarkersApi.Services
     {
         IEnumerable<Marker> GetAllMarkers();
         IEnumerable<Marker> GetMarkersByCategory(int category);
+        Marker UpdateUrl(string designId, string newUrl);
     }
 }

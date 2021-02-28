@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
 using MarkersApi.Services;
 
 namespace MarkersApi.Controllers
@@ -34,6 +35,24 @@ namespace MarkersApi.Controllers
         public IEnumerable<Marker> GetByCategory(int category)
         {
             return this.markerService.GetMarkersByCategory(category);
+        }
+
+        [HttpPost("updateUrl/{designId}/{newUrl}")]
+        public ActionResult<Marker> UpdateUrl([FromRoute] string designId, [FromRoute] string newUrl)
+        {
+            var existingMarker = this.markerService
+                .GetAllMarkers()
+                .Where(x => x.DesignId == designId)
+                .FirstOrDefault();
+
+            if (existingMarker == null)
+            {
+                return NotFound($"Could not find recipe with id = {designId}");
+            }
+
+            var updatedMarker = this.markerService.UpdateUrl(designId, newUrl);
+
+            return updatedMarker;
         }
     }
 }

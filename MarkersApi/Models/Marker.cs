@@ -9,6 +9,9 @@ namespace MarkersApi
         [BsonId]
         public ObjectId Id { get; set; }
 
+        [BsonElement("designId")]
+        public string DesignId { get; set; }
+
         [BsonElement("videoUrl")]
         public string VideoUrl { get; set; }
 
