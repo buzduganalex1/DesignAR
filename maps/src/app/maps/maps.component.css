@@ -9,3 +9,11 @@ agm-map {
 .addedBy{
   color: lightgray;
 }
+
+.no-margin{
+  margin: 0;
+}
+
+.no-padding-top{
+  padding-top: 0;
+}
