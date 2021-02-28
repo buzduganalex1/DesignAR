@@ -35,3 +35,4 @@ F:\work\hackathon\MarkersApi\MarkersApi\obj\Release\netcoreapp3.1\MarkersApi.csp
 F:\work\hackathon\MarkersApi\MarkersApi\obj\Release\netcoreapp3.1\MarkersApi.dll
 F:\work\hackathon\MarkersApi\MarkersApi\obj\Release\netcoreapp3.1\MarkersApi.pdb
 F:\work\hackathon\MarkersApi\MarkersApi\obj\Release\netcoreapp3.1\MarkersApi.genruntimeconfig.cache
+F:\work\hackathon\MarkersApi\MarkersApi\obj\Release\netcoreapp3.1\MarkersApi.csprojAssemblyReference.cache
