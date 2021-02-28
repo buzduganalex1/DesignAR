@@ -1,3 +1,11 @@
+<form-field [formControl]="categoryForm" >
+  <label>Marker Category</label>
+  <select>
+    <option *ngFor="let category of markerCategories" [value]="category.value">
+      {{category.viewValue}}
+    </option>
+  </select>
+</form-field>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="14" [minZoom]="12">
     <agm-marker [latitude]="marker.latitude" 
                 [longitude]="marker.longitude" 
@@ -7,7 +15,7 @@
       <agm-info-window [disableAutoPan]="false" [maxWidth]="400" #infoWindow>
         <div class="card align-middle">
           <div class="card-header" [style.background-color]="marker.markerIcon.color">
-            <b><h4 class="card-title no-margin">Video for {{marker.markerIcon.description}}</h4></b>            
+            <b><h4 class="card-title no-margin">Video for {{marker.title!== null ? marker.title : marker.markerIcon.description}}</h4></b>            
           </div>
           <div class="card-block no-padding-top">
             <p class="card-text">{{marker.description}}</p>
