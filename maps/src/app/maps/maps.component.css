@@ -1,5 +1,5 @@
 agm-map {
-    height: 800px;
+    height: 100%;
   }
 .thumbnail:hover{
   cursor: pointer;
@@ -16,4 +16,17 @@ agm-map {
 
 .no-padding-top{
   padding-top: 0;
+}
+
+.margin-row{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.test{
+  border: 1px solid black;
+}
+
+.height-85{
+  height: 85vh;
 }

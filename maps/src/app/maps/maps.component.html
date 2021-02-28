@@ -1,25 +1,44 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="14" [minZoom]="12">
-    <agm-marker [latitude]="marker.latitude" 
-                [longitude]="marker.longitude" 
-                [iconUrl]="marker.markerIcon.icon"                 
-                (markerClick)="onMouseOver(infoWindow, $event)"
-                *ngFor="let marker of markers; let i=index">
-      <agm-info-window [disableAutoPan]="false" [maxWidth]="400" #infoWindow>
-        <div class="card align-middle">
-          <div class="card-header" [style.background-color]="marker.markerIcon.color">
-            <b><h4 class="card-title no-margin">Video for {{marker.markerIcon.description}}</h4></b>            
-          </div>
-          <div class="card-block no-padding-top">
-            <p class="card-text">{{marker.description}}</p>
-            <img width="100%" src="{{marker.thumbnail}}" (click)="openNewWindow(marker.videoUrl)" class="thumbnail">
-          </div>
-          <div class="card-footer text-muted text-right">            
-            <div class="row">
-              <div class="col-md-3"><h6 class="no-margin"><span class="badge" [style.background-color]="marker.markerIcon.color">{{marker.markerIcon.description}}</span></h6></div>
-              <div class="col-md-9"><h6 class="addedBy no-margin">Added by @User123 <span class="glyphicon glyphicon-user"></span></h6></div>
-            </div>            
-          </div>
-        </div>
-      </agm-info-window>
-    </agm-marker>
-</agm-map>
+<div class="row margin-row height-85">
+  <div class="col-md-3 col-sm-4 col">
+    <div class="form-group">
+      <label>Enter address</label>
+      <input type="text" class="form-control" (focusout)="zoomOn($event)" (keydown.enter)="zoomOn($event)" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+    </div>
+
+    <div *ngFor="let displayedMarker of displayedMarkers">
+      {{displayedMarker.description}};
+    </div>
+  </div>
+
+  <div class="col-md-9 col-sm-8 col lg 11">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [minZoom]="14">
+      <agm-marker [latitude]="marker.latitude" 
+                    [longitude]="marker.longitude" 
+                    [iconUrl]="marker.markerIcon.icon"                 
+                    (markerClick)="onMouseOver(infoWindow, $event)"
+                    *ngFor="let marker of markers; let i=index">
+          <agm-info-window [disableAutoPan]="false" [maxWidth]="400" #infoWindow>
+            <div class="card align-middle">
+              <div class="card-header" [style.background-color]="marker.markerIcon.color">
+                <b><h4 class="card-title no-margin">Video for {{marker.markerIcon.description}}</h4></b>            
+              </div>
+              <div class="card-block no-padding-top">
+                <p class="card-text">{{marker.description}}</p>
+                <img width="100%" src="{{marker.thumbnail}}" (click)="openNewWindow(marker.videoUrl)" class="thumbnail">
+              </div>
+              <div class="card-footer text-muted text-right">            
+                <div class="row">
+                  <div class="col-md-3"><h6 class="no-margin"><span class="badge" [style.background-color]="marker.markerIcon.color">{{marker.markerIcon.description}}</span></h6></div>
+                  <div class="col-md-9"><h6 class="addedBy no-margin">Added by @User123 <span class="glyphicon glyphicon-user"></span></h6></div>
+                </div>            
+              </div>
+            </div>
+          </agm-info-window>
+        </agm-marker>
+    </agm-map>
+  </div>
+
+</div>
+
+
+

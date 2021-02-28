@@ -1,10 +1,12 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, SecurityContext, ViewChild } from '@angular/core';
 import { Marker } from '../Marker';
 import { MarkerService } from '../marker.service';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CATEGORIES } from '../CATEGORIES';
 import { Category } from "../category";
+import { MapsAPILoader } from '@agm/core';
+import { MARKERS } from '../mock-markers';
 
 @Component({
   selector: 'app-maps',
@@ -12,15 +14,31 @@ import { Category } from "../category";
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent implements OnInit {
-  lat = 47.151726;
+
+  //default to Iasi
+  lat = 47.151726; 
   lng = 27.587914;
+  address: string;
+  zoom = 14;
+  zoomedInSize = 15;
+
   openedInfoWindow;
 
   markers: Marker[];
 
+  displayedMarkers: Marker[];
+
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
+  
+  private geoCoder;
+  private defaultSearch = true;
+
   constructor(
     private markerService: MarkerService,
-    public sanitizer:DomSanitizer)
+    public sanitizer:DomSanitizer,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone)
     {  }
 
   ngOnInit(): void {
@@ -37,10 +55,47 @@ export class MapsComponent implements OnInit {
         else{
           obj.videoUrl = this.getEmbedUrl(videoId);//'https://www.youtube.com/embed/kS9ZE-Tzyxc';
           
-          //console.log("DA:" + obj.description + " " + obj.videoUrl);
           obj.thumbnail = this.getThumbnail(videoId); //'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
         }
       }); 
+
+      this.displayedMarkers = this.markers;
+    });
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentLocation();
+      this.geoCoder = new google.maps.Geocoder;
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.lat = place.geometry.location.lat();
+          this.lng = place.geometry.location.lng();
+          this.zoom = this.zoomedInSize;
+
+          const center = new google.maps.LatLng(this.lat, this.lng);
+
+          //markers located within x km distance from center are included
+          this.displayedMarkers = this.markers.filter(m => {
+
+            const markerLoc = new google.maps.LatLng(m.latitude.valueOf(), m.longitude.valueOf());
+            const  distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, center) / 1000;
+            if (distanceInKm < 2.0) {
+              return m;
+            }
+          });
+        });
+      });
     });
   }
 
@@ -87,5 +142,42 @@ export class MapsComponent implements OnInit {
 
   getMarkerIcon(category: Number): Category{
     return CATEGORIES.find(element => element.id == category);
+  }
+
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+
+        if(this.defaultSearch){
+          this.defaultSearch = false;
+        }
+        else{
+          this.zoom = this.zoomedInSize;
+        }
+      });
+    }
+  }
+
+  getAddress(latitude, longitude) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.address = results[0].formatted_address;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+  }
+
+  //zoom in when searching is complete
+  zoomOn($event: any){
+    $event.preventDefault();
+    this.zoom = this.zoomedInSize;
   }
 }

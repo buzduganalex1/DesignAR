@@ -12,7 +12,8 @@ import { MarkerComponent } from './marker/marker.component';
     BrowserModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCmoCJyZSDRVXGVa-pRkzZxbZyL8Bm9xMA'
+      apiKey: 'AIzaSyCmoCJyZSDRVXGVa-pRkzZxbZyL8Bm9xMA',
+      libraries: ['places', 'geometry']
     })
   ],
   providers: [],
