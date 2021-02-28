@@ -8,18 +8,56 @@ agm-map {
 }
 
 #wrapper {
-  width: 400px;
-   /* border: 1px solid black;  */
+  width: 100%;
+    /* border: 1px solid black;   */
+   /* display: inline-block; */
   overflow: hidden; /* will contain if #first is longer than #second */
 }
+
+#title {
+  float:left;
+  width: 80%
+}
+
 #first {
   width: 50px;
-  margin-right: 3%;
+  margin-left: 2%;
+  margin-right: 1%;
   float:left; /* add this */
    /* border: 1px solid red;  */
 }
 #second {
-   /* border: 1px solid green;  */
-   margin-left: 3%;
-  overflow: hidden; /* if you don't want #second to wrap below #first */
+   /* border: 1px solid green;   */
+   margin-left: 1%;
+   width:20%;
+  /*overflow: hidden; /* if you don't want #second to wrap below #first */
 }
+
+#buttons-wrapper {
+  width: 200px; 
+  float: right;
+  /* border: 1px solid green; */
+  top: 50%;
+  left: 50%;
+  margin: 12px 0 0 5px;
+}
+
+#about, #contact, #login {
+  width: auto;
+  margin-left: 1%;
+  margin-right: 1%;
+  float:left;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* 
+h1 {
+  font-family: 'cabinregular';
+  font-weight:normal;
+  font-style:normal;
+} */
