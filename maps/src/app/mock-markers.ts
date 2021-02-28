@@ -9,6 +9,7 @@ export const MARKERS: Marker[] = [
         markerIcon: null,
         thumbnail: null,
         timestamp: null,
-        videoUrl: null
+        videoUrl: null,
+        title: "Title"
     }
 ]

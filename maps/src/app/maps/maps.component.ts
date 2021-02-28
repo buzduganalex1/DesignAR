@@ -22,6 +22,7 @@ export class MapsComponent implements OnInit {
   address: string;
   zoom = 14;
   zoomedInSize = 15;
+  categories = CATEGORIES;
 
   openedInfoWindow;
 

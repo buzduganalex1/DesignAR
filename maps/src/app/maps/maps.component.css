@@ -1,5 +1,3 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 agm-map {
     height: 100%;
   }
@@ -31,4 +29,8 @@ agm-map {
 
 .height-85{
   height: 85vh;
+}
+
+.margin-bottom-2{
+  margin-bottom: 10%;
 }
