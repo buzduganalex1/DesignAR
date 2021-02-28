@@ -48,7 +48,6 @@ export class MapsComponent implements OnInit {
     .subscribe(results => {
       this.markers = results;
       this.markers.forEach(obj => {
-        obj.category = Math.floor(Math.random() * Math.floor(6));
         obj.markerIcon = this.getMarkerIcon(obj.category);
         let videoId = this.getYoutubeId(obj.videoUrl);
         if (!videoId) {
@@ -63,6 +62,21 @@ export class MapsComponent implements OnInit {
 
       this.displayedMarkers = this.markers;
     });
+
+    // this.markers = MARKERS;
+    // this.markers.forEach(obj => {
+    //   obj.markerIcon = this.getMarkerIcon(obj.category);
+    //   let videoId = this.getYoutubeId(obj.videoUrl);
+    //   if (!videoId) {
+    //     obj.videoUrl = "";
+    //     obj.thumbnail = "";
+    //   }
+    //   else{
+    //     obj.videoUrl = this.getEmbedUrl(videoId);//'https://www.youtube.com/embed/kS9ZE-Tzyxc';
+    //     obj.thumbnail = this.getThumbnail(videoId); //'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
+    //   }
+    // }); 
+    // this.displayedMarkers = this.markers;
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -96,6 +110,8 @@ export class MapsComponent implements OnInit {
               return m;
             }
           });
+
+          this.markers.forEach(marker => marker.isSelected = false);
         });
       });
     });
@@ -181,5 +197,17 @@ getMarkerIcon(category: Number): Category{
   zoomOn($event: any){
     $event.preventDefault();
     this.zoom = this.zoomedInSize;
+  }
+
+  setActive(index){
+    this.displayedMarkers.forEach(marker => {
+      marker.isSelected = false;
+    });
+    var marker = this.displayedMarkers.find(marker => marker.id === index);
+    marker.isSelected = true;
+
+    this.lat = marker.latitude.valueOf();
+    this.lng = marker.longitude.valueOf();
+    this.zoom = 18;
   }
 }

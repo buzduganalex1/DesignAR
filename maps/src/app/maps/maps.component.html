@@ -1,6 +1,6 @@
 <div class="row margin-row height-85">
   <div class="col-md-3 col-sm-4 col">
-    <div class="row">
+    <div class="row vh-10">
       <div class="col-md-3 col-sm-3" *ngFor="let category of categories">
         <h6 class="margin-bottom-2">
           <span class="badge" [style.background-color]="category.color">{{category.description}}</span>
@@ -13,8 +13,17 @@
       <input type="text" class="form-control" (focusout)="zoomOn($event)" (keydown.enter)="zoomOn($event)" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
     </div>
 
-    <div *ngFor="let displayedMarker of displayedMarkers">
-      {{displayedMarker.description}};
+    <div class="list-group vh-75 scroll">
+      <div *ngFor="let displayedMarker of displayedMarkers" (click)="setActive(displayedMarker.id)">
+        <div class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{'active' : displayedMarker.isSelected === true}">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{displayedMarker.title}}</h5>
+            <small>3 days ago</small>
+          </div>
+          <p class="mb-1">{{displayedMarker.description}}</p>
+          <small>Added by @User123</small>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -25,7 +34,7 @@
                     [iconUrl]="marker.markerIcon.icon"                 
                     (markerClick)="onMouseOver(infoWindow, $event)"
                     *ngFor="let marker of markers; let i=index">
-          <agm-info-window [disableAutoPan]="false" [maxWidth]="400" #infoWindow>
+          <agm-info-window [disableAutoPan]="false" [maxWidth]="400" [isOpen]="marker.isSelected" #infoWindow>
             <div class="card align-middle">
               <div class="card-header" [style.background-color]="marker.markerIcon.color">
                 <b><h4 class="card-title no-margin">Video for {{marker.markerIcon.description}}</h4></b>            

@@ -1,7 +1,7 @@
 import { Category } from "./category";
 
 export interface Marker{
-    //id: string;
+    id: string;
     latitude: Number;
     longitude: Number;
     description: string;
@@ -11,4 +11,5 @@ export interface Marker{
     thumbnail: string;
     markerIcon: Category;
     title: string;
+    isSelected: boolean;
 }

@@ -34,3 +34,17 @@ agm-map {
 .margin-bottom-2{
   margin-bottom: 10%;
 }
+
+.vh-10{
+  height: 10vh;
+}
+
+.vh-75{
+  height: 66vh;
+}
+.scroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
