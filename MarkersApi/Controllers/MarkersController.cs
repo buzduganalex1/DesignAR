@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System.Linq;
 using MarkersApi.Services;
 
 namespace MarkersApi.Controllers
@@ -16,14 +10,14 @@ namespace MarkersApi.Controllers
     public class MarkersController : ControllerBase
     {
         private readonly IMarkerService markerService;
-        private readonly ILogger<MarkersController> _logger;
+        private readonly ILogger<MarkersController> logger;
 
         public MarkersController(
             IMarkerService markerService,
             ILogger<MarkersController> logger)
         {
             this.markerService = markerService;
-            _logger = logger;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -34,6 +28,12 @@ namespace MarkersApi.Controllers
         public IEnumerable<Marker> Get()
         {
             return this.markerService.GetAllMarkers();
+        }
+
+        [HttpGet("category/{category}")]
+        public IEnumerable<Marker> GetByCategory(int category)
+        {
+            return this.markerService.GetMarkersByCategory(category);
         }
     }
 }

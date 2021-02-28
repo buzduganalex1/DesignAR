@@ -5,6 +5,7 @@ import { MarkerService } from '../marker.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CATEGORIES } from '../CATEGORIES';
 import { Category } from "../category";
+
 import { MapsAPILoader } from '@agm/core';
 import { MARKERS } from '../mock-markers';
 
@@ -46,6 +47,7 @@ export class MapsComponent implements OnInit {
     .subscribe(results => {
       this.markers = results;
       this.markers.forEach(obj => {
+        obj.category = Math.floor(Math.random() * Math.floor(6));
         obj.markerIcon = this.getMarkerIcon(obj.category);
         let videoId = this.getYoutubeId(obj.videoUrl);
         if (!videoId) {
@@ -54,7 +56,6 @@ export class MapsComponent implements OnInit {
         }
         else{
           obj.videoUrl = this.getEmbedUrl(videoId);//'https://www.youtube.com/embed/kS9ZE-Tzyxc';
-          
           obj.thumbnail = this.getThumbnail(videoId); //'https://img.youtube.com/vi/LK-Yegy74s0/mqdefault.jpg';
         }
       }); 
@@ -138,9 +139,9 @@ export class MapsComponent implements OnInit {
     }
     this.openedInfoWindow = infoWindow;
     infoWindow.open();
-  }
+}
 
-  getMarkerIcon(category: Number): Category{
+getMarkerIcon(category: Number): Category{
     return CATEGORIES.find(element => element.id == category);
   }
 

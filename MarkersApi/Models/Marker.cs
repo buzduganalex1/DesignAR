@@ -1,3 +1,4 @@
+using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -19,5 +20,14 @@ namespace MarkersApi
 
         [BsonElement("latitude")]
         public double Latitude { get; set; }
+
+        [BsonElement("timestamp")]
+        public string Timestamp { get; set; }
+
+        [BsonElement("category")]
+        public int Category { get; set; }
+
+        [BsonElement("title")]
+        public string Title { get; set; }
     }
 }

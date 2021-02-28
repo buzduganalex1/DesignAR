@@ -10,4 +10,5 @@ export interface Marker{
     category: Number;
     thumbnail: string;
     markerIcon: Category;
+    title: string;
 }
