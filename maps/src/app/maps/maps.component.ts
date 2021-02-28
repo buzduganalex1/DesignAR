@@ -23,12 +23,13 @@ export class MapsComponent implements OnInit {
   zoom = 14;
   zoomedInSize = 15;
   categories = CATEGORIES;
+  selectedCategory: Category;
 
   openedInfoWindow;
 
   markers: Marker[];
-
   displayedMarkers: Marker[];
+  filteredMarkers: Marker[];
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -60,6 +61,7 @@ export class MapsComponent implements OnInit {
         }
       }); 
 
+      this.filteredMarkers = this.markers;
       this.displayedMarkers = this.markers;
     });
 
@@ -102,16 +104,21 @@ export class MapsComponent implements OnInit {
           const center = new google.maps.LatLng(this.lat, this.lng);
 
           //markers located within x km distance from center are included
-          this.displayedMarkers = this.markers.filter(m => {
+          this.filteredMarkers = this.markers.filter(m => {
 
             const markerLoc = new google.maps.LatLng(m.latitude.valueOf(), m.longitude.valueOf());
             const  distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(markerLoc, center) / 1000;
+
+            //less than 2 km
             if (distanceInKm < 2.0) {
               return m;
             }
           });
 
           this.markers.forEach(marker => marker.isSelected = false);
+          this.displayedMarkers = this.filteredMarkers;
+
+          this.filterByCategory(this.selectedCategory);
         });
       });
     });
@@ -200,14 +207,23 @@ getMarkerIcon(category: Number): Category{
   }
 
   setActive(index){
-    this.displayedMarkers.forEach(marker => {
+    this.filteredMarkers.forEach(marker => {
       marker.isSelected = false;
     });
-    var marker = this.displayedMarkers.find(marker => marker.id === index);
+    var marker = this.filteredMarkers.find(marker => marker.id === index);
     marker.isSelected = true;
 
     this.lat = marker.latitude.valueOf();
     this.lng = marker.longitude.valueOf();
-    this.zoom = 18;
+    this.zoom = 20;
+  }
+
+  filterByCategory(category: Category){
+    this.filteredMarkers.forEach(marker => {
+      marker.isSelected = false;
+    });
+
+    this.filteredMarkers = this.displayedMarkers.filter(marker => marker.category === category.id);
+    this.selectedCategory = category;
   }
 }

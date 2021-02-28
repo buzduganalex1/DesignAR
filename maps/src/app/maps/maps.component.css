@@ -48,3 +48,25 @@ agm-map {
   border-top: 1px solid rgba(0, 0, 0, 0.125);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+
+.badge{
+  width: 100%;
+  font-size: 75%;
+}
+
+.form-group{
+  padding:0;
+  padding-top: 5%;
+}
+
+.search-badge:hover{
+  cursor: pointer;
+}
+
+.category-selected{
+  border: 3px solid black;
+}
+
+.width-370{
+  width:370px;
+}

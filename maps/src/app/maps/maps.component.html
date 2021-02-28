@@ -1,10 +1,10 @@
 <div class="row margin-row height-85">
   <div class="col-md-3 col-sm-4 col">
     <div class="row vh-10">
-      <div class="col-md-3 col-sm-3" *ngFor="let category of categories">
-        <h6 class="margin-bottom-2">
-          <span class="badge" [style.background-color]="category.color">{{category.description}}</span>
-        </h6>
+      <div class="col-md-4 col-sm-4" *ngFor="let category of categories">
+        <h5 class="margin-bottom-2">
+          <span class="badge search-badge"  [ngClass]="{'category-selected': selectedCategory != null && category.id === selectedCategory.id }" [style.background-color]="category.color" (click)="filterByCategory(category)">{{category.description}}</span>
+        </h5>
       </div>
     </div>
 
@@ -14,13 +14,13 @@
     </div>
 
     <div class="list-group vh-75 scroll">
-      <div *ngFor="let displayedMarker of displayedMarkers" (click)="setActive(displayedMarker.id)">
-        <div class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{'active' : displayedMarker.isSelected === true}">
+      <div *ngFor="let filteredMarker of filteredMarkers" (click)="setActive(filteredMarker.id)">
+        <div class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{'active' : filteredMarker.isSelected === true}">
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{displayedMarker.title}}</h5>
+            <h5 class="mb-1">{{filteredMarker.title}}</h5>
             <small>3 days ago</small>
           </div>
-          <p class="mb-1">{{displayedMarker.description}}</p>
+          <p class="mb-1">{{filteredMarker.description}}</p>
           <small>Added by @User123</small>
         </div>
       </div>
@@ -35,18 +35,19 @@
                     (markerClick)="onMouseOver(infoWindow, $event)"
                     *ngFor="let marker of markers; let i=index">
           <agm-info-window [disableAutoPan]="false" [maxWidth]="400" [isOpen]="marker.isSelected" #infoWindow>
-            <div class="card align-middle">
+            <div class="card align-middle width-370">
               <div class="card-header" [style.background-color]="marker.markerIcon.color">
                 <b><h4 class="card-title no-margin">Video for {{marker.markerIcon.description}}</h4></b>            
               </div>
               <div class="card-block no-padding-top">
-                <p class="card-text">{{marker.description}}</p>
+                
+                <p class="mb-1">{{marker.description}}</p>
                 <img width="100%" src="{{marker.thumbnail}}" (click)="openNewWindow(marker.videoUrl)" class="thumbnail">
               </div>
               <div class="card-footer text-muted text-right">            
                 <div class="row">
-                  <div class="col-md-3"><h6 class="no-margin"><span class="badge" [style.background-color]="marker.markerIcon.color">{{marker.markerIcon.description}}</span></h6></div>
-                  <div class="col-md-9"><h6 class="addedBy no-margin">Added by @User123 <span class="glyphicon glyphicon-user"></span></h6></div>
+                  <div class="col-md-4"><h6 class="no-margin"><span class="badge" [style.background-color]="marker.markerIcon.color">{{marker.markerIcon.description}}</span></h6></div>
+                  <div class="col-md-8"><h6 class="addedBy no-margin">Added by @User123 <span class="glyphicon glyphicon-user"></span></h6></div>
                 </div>            
               </div>
             </div>

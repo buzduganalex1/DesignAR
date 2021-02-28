@@ -17,7 +17,7 @@ export const CATEGORIES: Category[] = [
             scaledSize: {height: 40, width: 40}
           },
         description: 'Public space',
-        color: '#2a6e40'
+        color: '#30A415'
     },
     {
         id: 2,
@@ -26,7 +26,7 @@ export const CATEGORIES: Category[] = [
             scaledSize: {height: 40, width: 40}
           },
         description: 'Mobility',
-        color: '#26769e'
+        color: '#3674B0'
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ export const CATEGORIES: Category[] = [
             scaledSize: {height: 40, width: 40}
           },
         description: 'Public safety',
-        color: '#d1d124'
+        color: '#D1BC1D'
     },
     {
         id: 4,
@@ -44,7 +44,7 @@ export const CATEGORIES: Category[] = [
             scaledSize: {height: 40, width: 40}
           },
         description: 'Culture',
-        color: '#e64e4e'
+        color: '#E64E4E'
     },
     {
         id: 5,
@@ -53,7 +53,7 @@ export const CATEGORIES: Category[] = [
             scaledSize: {height: 40, width: 40}
           },
         description: 'Health',
-        color: '#ed0505'
+        color: '#AD0909'
     },
     {
         id: 6,
@@ -62,6 +62,6 @@ export const CATEGORIES: Category[] = [
             scaledSize: {height: 40, width: 40}
           },
         description: 'Education',
-        color: '#119c97'
+        color: '#14C8C1'
     }
 ]
