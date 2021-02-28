@@ -12,4 +12,8 @@ export class MarkerService {
   getMarkers(): Observable<Marker[]>{
     return this.http.get<Marker[]>("https://cg-markers.azurewebsites.net/");
   }
+
+  getMarkersOfCategory(): Observable<Marker[]>{
+    return this.http.get<Marker[]>("https://cg-markers.azurewebsites.net/");
+  }
 }

@@ -37,7 +37,11 @@
           <agm-info-window [disableAutoPan]="false" [maxWidth]="400" [isOpen]="marker.isSelected" #infoWindow>
             <div class="card align-middle width-370">
               <div class="card-header" [style.background-color]="marker.markerIcon.color">
-                <b><h4 class="card-title no-margin">Video for {{marker.markerIcon.description}}</h4></b>            
+                <b><h4 class="card-title no-margin">
+                  Video for {{marker.title !== null 
+                    ? getShortMarkerTitle(marker.title) 
+                    : marker.markerIcon.description}}
+                  </h4></b>            
               </div>
               <div class="card-block no-padding-top">
                 

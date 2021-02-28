@@ -226,4 +226,10 @@ getMarkerIcon(category: Number): Category{
     this.filteredMarkers = this.displayedMarkers.filter(marker => marker.category === category.id);
     this.selectedCategory = category;
   }
+
+  getShortMarkerTitle(title: string): string {
+    return title.length <= 20
+      ? title
+      : `${title.substring(0,20)}...`;
+  }
 }
