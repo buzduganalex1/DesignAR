@@ -17,3 +17,13 @@ The people can film their creations and  post them on a video platform where oth
 Placing object in augmented space can have multiple applications like placing furniture in an home, or decorating an yard with pieces of art. Vizualizing how something looks like before actually starting a project is really helpfull and can reduce the costs and increase the engagement of the community.
 
 Ideally the technology could be used to create art expositions in Virtual space and define the concept of smart park where events can be triggered by walking past objects, virtual objects that create a better viewing experience can be placed inside the park, decoration, and even animations can be created. The app could be used for measuring, planning, vizualizing and engaging the community to design their surroundings.
+
+## Resources used for this project
+
+- https://www.youtube.com/watch?v=2wn9xQiPLfw&t=93s&ab_channel=DilmerValecillos
+- https://www.youtube.com/watch?v=Ilajw3BR9Bc&ab_channel=JoystickLab
+- https://www.youtube.com/watch?v=lUWGeQzpnbI&ab_channel=AntonDeveloper
+- https://www.youtube.com/watch?v=g04jaC-Tpn0&t=626s&ab_channel=N3KEN
+- https://github.com/HBiSoft/HBRecorder
+- https://developers.google.com/youtube/v3/code_samples/dotnet
+- 
