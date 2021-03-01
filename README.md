@@ -26,4 +26,3 @@ Ideally the technology could be used to create art expositions in Virtual space 
 - https://www.youtube.com/watch?v=g04jaC-Tpn0&t=626s&ab_channel=N3KEN
 - https://github.com/HBiSoft/HBRecorder
 - https://developers.google.com/youtube/v3/code_samples/dotnet
-- 
